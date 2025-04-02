@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import router from "./Routers/index"; // Import the router, not individual controllers
 
 dotenv.config();
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.DB_URL || "";
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", router); // Mount the router at /api
 app.get("/", (req: Request, res: Response): any => {
