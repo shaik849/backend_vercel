@@ -10,7 +10,7 @@ const MONGO_URI = process.env.DB_URL || "";
 
 app.use(express.json());
 app.use("/api", router); // Mount the router at /api
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response): any => {
     return res.status(200).json({
       status: true,
       message: "Hello World!",
