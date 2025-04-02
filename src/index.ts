@@ -10,7 +10,12 @@ const MONGO_URI = process.env.DB_URL || "";
 
 app.use(express.json());
 app.use("/api", router); // Mount the router at /api
-
+app.get("/", (res: Response): any =>{
+  return res.status(200).json({
+    status: true,
+    message : "Hello World!"
+  })
+})
 const connectDB = async () => {
     try {
         await mongoose.connect(MONGO_URI);
