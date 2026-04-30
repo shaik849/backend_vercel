@@ -13,22 +13,12 @@ jobs:
     steps:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
-        env:
-         MONGO_URI: ${{ secrets.DB_URL }}
-         PORT: 3000
-         USERNAME: shaik849
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            set -e
-
-            cd ~/backend_vercel
-
-            echo "📦 Backup current version"
-            mkdir -p ~/backend_backup
-            rsync -av --delete --exclude='.git' . ~/backend_backup
+            cd backend_vercel
 
             echo "📥 Pull latest code"
             git pull origin main
@@ -38,17 +28,16 @@ jobs:
 
             echo "⚙️ Create .env file"
             cat <<EOF > .env
-            DB_URL=$DB_URL
-            PORT=$PORT
-            USERNAME=$USERNAME
+            DB_URL=${{ secrets.DB_URL }}
+            PORT=3000
+            USERNAME=shaik849
             EOF
 
             echo "🏗️ Build TS"
             npm run build
 
             echo "🔄 Restart PM2"
-            pm2 restart backend || pm2 start dist/index.js --name backend
+            pm2 delete backend || true
+            pm2 start dist/index.js --name backend
 
             pm2 save
-
-            echo "✅ Deployment successful"
