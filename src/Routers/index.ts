@@ -78,7 +78,7 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
     };
 
     // ⏳ wait for 30 seconds
-    await new Promise((resolve) => setTimeout(resolve, 50000));
+    await new Promise((resolve) => setTimeout(resolve, 25000));
 
     return res.status(200).json({
       success: true,
