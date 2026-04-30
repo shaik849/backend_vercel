@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.DB_URL || "";
 app.use(cors());
 app.use(express.json());
-app.use("/api", router); // Mount the router at /api
+app.use("/api", router); 
 app.get("/", (req: Request, res: Response): any => {
     return res.status(200).json({
       status: true,
