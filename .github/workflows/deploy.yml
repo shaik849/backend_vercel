@@ -28,9 +28,9 @@ jobs:
 
             echo "⚙️ Create .env file"
             cat <<EOF > .env
-            MONGO_URI=${{ secrets.MONGO_URI }}
+            DB_URL=${{ secrets.DB_URL }}
             PORT=3000
-            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            USERNAME="shaik849"
             EOF
 
             echo "🏗️ Build TS"
