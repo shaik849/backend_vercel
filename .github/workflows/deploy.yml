@@ -22,12 +22,13 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            set -e   # ❗ stop on error
+            set -e
 
             cd ~/backend_vercel
 
             echo "📦 Backup current version"
-            cp -r . ../backend_backup || true
+            mkdir -p ~/backend_backup
+            rsync -av --delete --exclude='.git' . ~/backend_backup
 
             echo "📥 Pull latest code"
             git pull origin main
