@@ -55,14 +55,20 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
 
     // 🔥 Dummy response
     const mockResponse = {
-      status: "APPROVED_WITH_SUGGESTIONS",
+      status: "BLOCKED",
       summary: "Refactored API logic and improved error handling.",
       changes: [
         "Added async error handling",
         "Improved API response structure",
         "Introduced environment variable fallback"
       ],
-      issues: [],
+      issues: [
+                {
+          file: "routes/review.ts",
+          line: "10-20",
+          message: "issue found"
+        },
+      ],
       suggestions: [
         {
           file: "routes/review.ts",
