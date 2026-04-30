@@ -46,7 +46,6 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
   const { diff } = req.body;
 
   try {
-    // 👉 you can optionally validate input
     if (!diff) {
       return res.status(400).json({
         success: false,
@@ -54,7 +53,7 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
       });
     }
 
-    // 🔥 Dummy response (mock AI result)
+    // 🔥 Dummy response
     const mockResponse = {
       status: "APPROVED_WITH_SUGGESTIONS",
       summary: "Refactored API logic and improved error handling.",
@@ -77,6 +76,9 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
         }
       ]
     };
+
+    // ⏳ wait for 30 seconds
+    await new Promise((resolve) => setTimeout(resolve, 50000));
 
     return res.status(200).json({
       success: true,
