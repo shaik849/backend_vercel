@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.DB_URL || "";
+console.log("sana")
 console.log(MONGO_URI)
 app.use(cors());
 app.use(express.json());
