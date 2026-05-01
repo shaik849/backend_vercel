@@ -55,7 +55,7 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
 
     // 🔥 Dummy response
     const mockResponse = {
-      status: "BLOCKED",
+      status: "APPORED",
       summary: "Refactored API logic and improved error handling.",
       changes: [
         "Added async error handling",
@@ -63,23 +63,8 @@ router.post("/review", async (req: Request, res: Response): Promise<any> => {
         "Introduced environment variable fallback"
       ],
       issues: [
-                {
-          file: "routes/review.ts",
-          line: "10-20",
-          message: "issue found"
-        },
       ],
       suggestions: [
-        {
-          file: "routes/review.ts",
-          line: "10-20",
-          message: "Add input validation for diff to prevent empty or invalid requests"
-        },
-        {
-          file: "services/reviewService.ts",
-          line: "5",
-          message: "Avoid console.log in production, use a proper logger"
-        }
       ]
     };
 
