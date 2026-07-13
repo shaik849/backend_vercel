@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// Define Post Interface
+// Define Post Interface 
 export interface IPost extends Document {
     name: string;
     description: string;
